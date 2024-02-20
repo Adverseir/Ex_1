@@ -42,14 +42,14 @@
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/imageView11"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:src="@android:drawable/ic_menu_share"
         app:layout_constraintEnd_toEndOf="@+id/imageView13"
         app:layout_constraintStart_toStartOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/imageView13"
-        app:srcCompat="@android:drawable/sym_action_email" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
     <TextView
         android:id="@+id/textView4"
@@ -62,12 +62,17 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="37dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginEnd="85dp"
         android:text="32"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toTopOf="@+id/imageView9" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView13"
+        app:layout_constraintTop_toTopOf="@+id/imageButton"
+        app:layout_constraintVertical_bias="0.586" />
 
     <TextView
         android:id="@+id/textView5"
@@ -78,15 +83,7 @@
         app:layout_constraintStart_toEndOf="@+id/imageView12"
         app:layout_constraintTop_toTopOf="@+id/imageView12" />
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/imageView13"
-        app:srcCompat="@android:drawable/checkbox_off_background" />
-
-    <ImageView
+    <ImageButton
         android:id="@+id/imageView12"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -94,11 +91,13 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView13"
         app:srcCompat="@android:drawable/ic_menu_view" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/imageView13"
         android:layout_width="351dp"
         android:layout_height="120dp"
         android:layout_marginTop="20dp"
+        android:backgroundTint="#FDF6FE"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -114,5 +113,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FDF6FE"
+        app:layout_constraintStart_toStartOf="@+id/imageView13"
+        app:layout_constraintTop_toBottomOf="@+id/imageView13"
+        app:srcCompat="@android:drawable/btn_dialog"
+        tools:srcCompat="@drawable/likeofff" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
