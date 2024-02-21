@@ -17,6 +17,10 @@ class MainActivity2 : AppCompatActivity() {
 
         setContentView(R.layout.activity_main2)
         var Button : Button = findViewById(R.id.button)
+        var re :TextView = findViewById(R.id.textView5)
+        var y = re.text.toString().toInt()
+        y++
+        re.text = y.toString()
         Button.setOnClickListener{
 
             var intent=Intent(this, MainActivity::class.java)
@@ -29,7 +33,6 @@ class MainActivity2 : AppCompatActivity() {
             var count = 0
 
      var btnImg : ImageButton = findViewById(R.id.imageButton)
-
             btnImg.setOnClickListener{
 
                 count++
@@ -61,7 +64,7 @@ class MainActivity2 : AppCompatActivity() {
                 }
                 else{
                     count2=0
-                    b--
+                    b++
 
                 }
                 mess.text = b.toString()
@@ -69,6 +72,20 @@ class MainActivity2 : AppCompatActivity() {
                 }
             }
 
+}
+fun toStringNumb(count:Int):String
+{
+    return when(count)
+    {
+        in 0..999 -> count.toString()
+        in 1000..1_000_000 -> {
+            ((count/100).toFloat()/10).toString() +"К"
+        }
+        in 1_000_000..1_000_000_000 -> {
+            ((count/100_000).toFloat()/10).toString() + "М"
+        }
+        else -> "Более МЛРД"
+    }
 }
 
 
