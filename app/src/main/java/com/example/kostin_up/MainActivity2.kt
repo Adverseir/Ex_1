@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.kostin_up.databinding.ActivityMain2Binding
+import com.example.kostin_up.databinding.PostCardBinding
 
 
 class MainActivity2 : AppCompatActivity() {
@@ -12,19 +13,21 @@ class MainActivity2 : AppCompatActivity() {
         val binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
         val postViewModel: PostViewModel by viewModels()
-        postViewModel.data.observe(this){post->
-            with(binding){
-                textAuthor.text = post.textAuthor
-                textShare.text = post.amountShare.toString()
-                amountLike.text = toStringNumb(post.amountLike)
-                imageLike.setImageResource(if (post.imageLike) R.drawable.likeonn else R.drawable.likeofff)
+
+        postViewModel.data.observe(this){posts->
+            posts.map {post ->
+                PostCardBinding.inflate(layoutInflater, binding.container, true).apply {
+                    textAuthor.text = post.textAuthor
+                    textData.text = post.textData
+                    textViewContent.text = post.textViewContent
+                    imageLike.setImageResource(
+                        if (post.isLike) R.drawable.likeonn else R.drawable.likeofff
+                    )
+                    imageLike.setOnClickListener {
+                        postViewModel.likeById(post.id)
+                    }
+                }.root
             }
-        }
-        binding.imageLike.setOnClickListener {
-            postViewModel.like()
-        }
-        binding.imageShare.setOnClickListener {
-            postViewModel.share()
         }
     }
 
