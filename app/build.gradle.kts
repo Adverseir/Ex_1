@@ -35,7 +35,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-}
 
 dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
@@ -48,9 +47,10 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.8.2")
     implementation("androidx.gridlayout:gridlayout:1.0.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
     testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.arch.core:core-testing:2.2.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
+    }
 }
