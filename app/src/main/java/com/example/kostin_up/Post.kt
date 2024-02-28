@@ -7,5 +7,6 @@ data class Post(
     var amountShare: Int,
     val textData: String,
     val imageLike: Boolean = false,
-    var amountLike: Int
+    var amountLike: Int,
+    var removeById: Long
 )

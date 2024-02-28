@@ -10,6 +10,7 @@ interface PostRepository {
     fun share()
     fun getAll(): LiveData<List<Post>>
     fun likeById(id: Long)
+    fun removeById(id: Long)
 }
 
 class PostRepositoryInMemoryImpl : PostRepository {
@@ -21,7 +22,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             textData = "Только что",
             amountShare = 0,
             imageLike = false,
-            amountLike = 0
+            amountLike = 0,
+            removeById = 12
         ),
         Post(
             id = 2,
@@ -30,7 +32,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             textData = "Только что",
             amountShare = 0,
             imageLike = false,
-            amountLike = 0
+            amountLike = 0,
+            removeById = 23
         ),
     )
 
@@ -50,16 +53,21 @@ class PostRepositoryInMemoryImpl : PostRepository {
        }
         data.value = post
     }
-   /* override fun like() {
-        if (post.imageLike) post.amountLike-- else post.amountLike++
-        post = post.copy(imageLike = !post.imageLike)
 
+    override fun removeById(id: Long) {
+        post = post.filter { it.id != id.toInt()}
         data.value = post
     }
-    override fun share() {
-         post.amountShare++
-        data.value = post
-    }*/
+    /* override fun like() {
+         if (post.imageLike) post.amountLike-- else post.amountLike++
+         post = post.copy(imageLike = !post.imageLike)
+
+         data.value = post
+     }
+     override fun share() {
+          post.amountShare++
+         data.value = post
+     }*/
 }
 
 
@@ -68,6 +76,7 @@ class PostViewModel: ViewModel(){
     private val repository:PostRepository =  PostRepositoryInMemoryImpl()
     val data = repository.getAll()
     fun likedById(id: Long) = repository.likeById(id)
+    fun removeById(id: Long) = repository.removeById(id)
 
     fun share() = repository.share()
 }

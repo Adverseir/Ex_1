@@ -12,6 +12,7 @@ class PostViewHolder (
             textAuthor.text = post.textAuthor
             textData.text = post.textData
             textViewContent.text = post.textViewContent
+
             imageLike.setImageResource(
                 if (post.imageLike) R.drawable.likeonn else R.drawable.likeofff
             )

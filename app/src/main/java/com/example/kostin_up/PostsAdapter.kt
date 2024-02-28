@@ -1,5 +1,6 @@
 package com.example.kostin_up
 
+import android.nfc.NfcAdapter.OnTagRemovedListener
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kostin_up.databinding.CardPostBinding
 
 typealias OnClickListener = (post: Post) -> Unit
+typealias onRemoveListener = (post: Post) -> Unit
 class PostsAdapter(
-    private val onLikeListener: OnClickListener
+    private val onLikeListener: OnClickListener,
+    private val onRemoveListener: onRemoveListener,
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
