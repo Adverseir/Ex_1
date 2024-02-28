@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> f1e4589c5b63a25868f4119604bc63c735b96e35
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity2">
+<<<<<<< HEAD
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
@@ -13,3 +18,11 @@
         tools:listitem="@layout/card_post"
        />
 </FrameLayout>
+=======
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/container"/>
+</ScrollView>
+>>>>>>> f1e4589c5b63a25868f4119604bc63c735b96e35
