@@ -5,16 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 interface PostRepository {
-    fun get(): LiveData<Post>
-
     fun share()
     fun getAll(): LiveData<List<Post>>
     fun likeById(id: Long)
     fun removeById(id: Long)
+    fun save(post: Post)
 }
 
 class PostRepositoryInMemoryImpl : PostRepository {
-    private var post = listOf(
+    private var posts = listOf(
         Post(
             id = 1,
             textAuthor = "Костин УП",
@@ -23,7 +22,6 @@ class PostRepositoryInMemoryImpl : PostRepository {
             amountShare = 0,
             imageLike = false,
             amountLike = 0,
-            removeById = 12
         ),
         Post(
             id = 2,
@@ -33,14 +31,20 @@ class PostRepositoryInMemoryImpl : PostRepository {
             amountShare = 0,
             imageLike = false,
             amountLike = 0,
-            removeById = 23
         ),
     )
-
-    private val data = MutableLiveData(post)
-    override fun get(): LiveData<Post> {
-        TODO("Not yet implemented")
+    fun nextId(post: List<Post>):Int
+    {
+        var id = 1
+        post.forEach { it1 ->
+            post.forEach {
+                if (it.id.toInt() ==id) id = (it.id+1).toInt()
+            }
+        }
+        return id
     }
+    private val data = MutableLiveData(posts)
+
 
     override fun share() {
         TODO("Not yet implemented")
@@ -48,35 +52,76 @@ class PostRepositoryInMemoryImpl : PostRepository {
 
     override fun getAll(): LiveData<List<Post>> = data
     override fun likeById(id: Long) {
-       post = post.map {
+       posts = posts.map {
            if(it.id != id.toInt()) it else it.copy(imageLike = !it.imageLike)
        }
-        data.value = post
+        data.value = posts
     }
 
     override fun removeById(id: Long) {
-        post = post.filter { it.id != id.toInt()}
-        data.value = post
+        posts = posts.filter {it.id !=id.toInt()}
+        data.value = posts
     }
-    /* override fun like() {
-         if (post.imageLike) post.amountLike-- else post.amountLike++
-         post = post.copy(imageLike = !post.imageLike)
 
-         data.value = post
-     }
-     override fun share() {
-          post.amountShare++
-         data.value = post
-     }*/
+    override fun save(post: Post) {
+        if (post.id == 0) {
+            posts = listOf(post.copy(
+                id = nextId(posts),
+                textAuthor = "Костин Вячеслав",
+                imageLike = false,
+            )) + posts
+            data.value = posts
+            return
+        }
+        posts = posts.map {
+            if ( it.id!= post.id) it else it.copy(textViewContent = post.textViewContent)
+        }
+        data.value = posts
+    }
 }
 
+private val empty = Post(
+    id = 0,
+    textAuthor = "",
+    textViewContent = "",
+    textData = "",
+    imageLike = false,
+    amountLike = 0,
+    amountShare = 0
 
+)
 
 class PostViewModel: ViewModel(){
     private val repository:PostRepository =  PostRepositoryInMemoryImpl()
     val data = repository.getAll()
+    val edited = MutableLiveData(empty)
+    fun nextId(post:List<Post>):Long {
+        var id = 1
+        post.forEach { it1 ->
+            post.forEach {
+                if (it.id.toInt() == id) id = (it.id + 1).toInt()
+            }
+        }
+        return id.toLong()
+    }
+    fun save() {
+        edited.value?.let {
+            repository.save(it)
+        }
+        edited.value = empty
+    }
+
+    fun changeContent(textViewContent: String) {
+        edited.value?.let {
+            val text = textViewContent.trim()
+            if (it.textViewContent == text) {
+                return
+            }
+            edited.value = it.copy(textViewContent = text)
+        }
+    }
+
     fun likedById(id: Long) = repository.likeById(id)
     fun removeById(id: Long) = repository.removeById(id)
-
     fun share() = repository.share()
 }

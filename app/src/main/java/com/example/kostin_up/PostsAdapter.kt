@@ -1,24 +1,24 @@
 package com.example.kostin_up
 
-import android.nfc.NfcAdapter.OnTagRemovedListener
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.example.kostin_up.databinding.CardPostBinding
 
 typealias OnClickListener = (post: Post) -> Unit
-typealias onRemoveListener = (post: Post) -> Unit
+typealias OnRemoveListener = (post: Post) -> Unit
 class PostsAdapter(
     private val onLikeListener: OnClickListener,
-    private val onRemoveListener: onRemoveListener,
+    private val onRemoveListener: OnRemoveListener,
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding, onLikeListener)
+        return PostViewHolder(binding, onLikeListener ,onRemoveListener)
     }
+
+
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = getItem(position)

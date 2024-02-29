@@ -8,5 +8,4 @@ data class Post(
     val textData: String,
     val imageLike: Boolean = false,
     var amountLike: Int,
-    var removeById: Long
 )
