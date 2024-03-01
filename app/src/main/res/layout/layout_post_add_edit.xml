@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="?abackground"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/border2"
@@ -30,17 +35,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <EditText
             android:id="@+id/textAuthor"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Костин УП"
-            android:textSize="20dp"
-            android:textColor="?atextColorBlue"
             android:layout_margin="5dp"
+            android:layout_marginEnd="193dp"
+            android:hint="Автор"
+            android:textColor="?atextColorBlue"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/textData"
+            app:layout_constraintEnd_toStartOf="@+id/imageButtonMore"
             app:layout_constraintStart_toEndOf="@+id/imageViewAvatar"
-            app:layout_constraintTop_toTopOf="@+id/imageViewAvatar"
-            app:layout_constraintBottom_toTopOf="@id/textData"/>
+            app:layout_constraintTop_toTopOf="@+id/imageViewAvatar" />
 
         <TextView
             android:id="@+id/textData"
@@ -57,10 +64,10 @@
             android:id="@+id/imageButtonMore"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="#00000000"
-            android:src="@drawable/ic_more"
             android:layout_margin="15dp"
+            android:background="#00000000"
             android:scaleType="centerCrop"
+            android:src="@drawable/ic_more"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -74,14 +81,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/containerHeader" >
 
-        <TextView
+        <EditText
             android:id="@+id/textViewContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:textColor="?atextColor"
             android:layout_marginTop="4dp"
-            android:text="ksjdfhskjd hksjfh skjhf ksjdh kjsd"
+            android:hint="Введиите конент"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -166,3 +173,26 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageButton
+    android:id="@+id/imageButtonSavePost"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:background="@color/transparent"
+    android:clickable="true"
+    android:scaleType="fitCenter"
+    android:layout_gravity="bottom|end"
+    android:stateListAnimator="@animator/zoom_button"
+    android:layout_margin="10dp"
+    android:src="@drawable/ic_accept"/>
+    <ImageButton
+        android:id="@+id/imageButtonCancel"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@color/transparent"
+        android:clickable="true"
+        android:scaleType="fitCenter"
+        android:layout_gravity="bottom|start"
+        android:stateListAnimator="@animator/zoom_button"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_back_button"/>
+</FrameLayout>

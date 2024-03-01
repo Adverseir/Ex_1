@@ -2,11 +2,12 @@ package com.example.kostin_up
 
 data class Post(
     val id: Int,
-    val textAuthor: String,
-    val textViewContent: String,
-    var amountShare: Int,
-    val textData: String,
-    val imageLike: Boolean = false,
-    var amountLike: Int,
-    var removeById: Long
+    val author: String,
+    val content: String,
+    val data: String,
+    var amountLike: Int = 0,
+    var amountShare: Int = 0,
+    var amountView:Int = 0,
+    val isLiked: Boolean = false
+
 )

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="abackground" format="color"/>
+    <attr name="atextColorBlue" format="color"/>
+    <attr name="atextColor" format="color"/>
+    <attr name="ablue" format="color"/>
+    <attr name="ablue_light" format="color"/>
+    <attr name="ablue_light2" format="color"/>
+    <attr name="ablue_dark" format="color"/>
+    <attr name="ablack" format="color"/>
+    <attr name="awhite" format="color"/>
+</resources>
