@@ -1,8 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Kostin_UP" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="atextColorBlue">@color/blue_dark</item>
+        <item name="atextColor">@color/black</item>
+        <item name="ablue">@color/blue</item>
+        <item name="ablue_light">@color/blue_light</item>
+        <item name="ablue_light2">@color/blue_light2</item>
+        <item name="awhite">@color/white</item>
+        <item name="ablack">@color/black</item>
+        <item name="abackground">@color/white</item>
     </style>
 
     <style name="Theme.Kostin_UP" parent="Base.Theme.Kostin_UP" />

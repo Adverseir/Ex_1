@@ -1,15 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="?abackground"
     android:layout_height="match_parent"
     tools:context=".MainActivity2">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/card_post"
-       />
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/card_post" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageButton
+        android:id="@+id/imageButtonAddPost"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@color/transparent"
+        android:clickable="true"
+        android:scaleType="fitCenter"
+        android:layout_gravity="bottom|end"
+        android:stateListAnimator="@animator/zoom_button"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_plus"/>
 </FrameLayout>

@@ -7,17 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kostin_up.databinding.CardPostBinding
-
-typealias OnClickListener = (post: Post) -> Unit
-typealias onRemoveListener = (post: Post) -> Unit
-class PostsAdapter(
-    private val onLikeListener: OnClickListener,
-    private val onRemoveListener: onRemoveListener,
-) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
+class PostsAdapter(private val listener: Listener) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding, onLikeListener)
+        return PostViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
