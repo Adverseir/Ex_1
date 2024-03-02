@@ -1,76 +1,87 @@
 package com.example.kostin_up
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
+import android.widget.PopupMenu
 import androidx.activity.viewModels
-import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kostin_up.databinding.ActivityMain2Binding
-import com.example.kostin_up.databinding.CardPostBinding
+import com.example.kostin_up.databinding.LayoutPostAddEditBinding
 
 
-class MainActivity2 : AppCompatActivity() {
-
+class MainActivity2 : AppCompatActivity(),Listener {
+    private val viewModel: PostViewModel by viewModels()
+    private lateinit var binding:ActivityMain2Binding
+    private lateinit var bindingAddEditBinding:LayoutPostAddEditBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMain2Binding.inflate(layoutInflater)
+        binding = ActivityMain2Binding.inflate(layoutInflater)
+        bindingAddEditBinding = LayoutPostAddEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val viewModel: PostViewModel by viewModels()
-        val adapter = PostsAdapter(
-            onLikeListener = {
-                viewModel.likedById(it.id.toLong())
-            },
-            onRemoveListener = {
-                viewModel.removeById(it.id.toLong())
-            }
-        )
-        binding.list.adapter = adapter
+        val adapter = PostsAdapter (this)
+        binding.recyclerView.adapter = adapter
         viewModel.data.observe(this) { posts ->
             adapter.submitList(posts)
-
         }
-        binding.buttonSave.setOnClickListener {
-            with(binding.editText) {
-                if (text.isNullOrBlank()){
-                Toast.makeText(
-                    this@MainActivity2,
-                    "Content can't be empty",
-                    Toast.LENGTH_SHORT
-                ).show()
-                return@setOnClickListener
-            }
-            viewModel.changeContent(text.toString())
-                viewModel.save()
-
-                setText("")
-                clearFocus()
-                AndroidUtils.hideKeyboard(this)
+        binding.imageButtonAddPost.setOnClickListener {
+            with(bindingAddEditBinding){
+                setContentView(root)
+                textViewContent.setText( "")
+                textAuthor.setText("")
+                textData.text = ""
+                imageButtonCancel.setOnClickListener {
+                    setContentView(binding.root)
+                }
+                imageButtonSavePost.setOnClickListener {
+                    viewModel.add(textAuthor.text.toString(),textViewContent.text.toString())
+                    setContentView(binding.root)
+                }
             }
         }
-    }
-}
-object AndroidUtils {
-    fun hideKeyboard(view: View) {
-        val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
-    }
-}
 
-fun toStringNumb(count: Int): String {
-    return when (count) {
-        in 0..<1_000 -> count.toString()
-        in 1000..<1_100 -> "1K"
-        in 1_100..<10_000 -> ((count / 100).toFloat() / 10).toString() + "K"
-        in 10_000..<1_000_000 -> (count / 1_000).toString() + "K"
-        in 1_000_000..<1_100_000 -> "1M"
-        in 1_100_000..<10_000_000 -> ((count / 100_000).toFloat() / 10).toString() + "M"
-        in 10_000_000..<1_000_000_000 -> (count / 1_000_000).toString() + "M"
-        else -> "более млрд"
+    }
+
+    override fun onClickLike(post: Post) {
+        viewModel.likedById(post.id)
+    }
+
+    override fun onClickShare(post: Post) {
+        viewModel.shareById(post.id)
+
+    }
+
+    override fun onClickMore(view: View, post: Post) {
+        val popupMenu = PopupMenu(this,view) //Объявление объекта меню
+
+        popupMenu.inflate(R.menu.menu_post) //Указываю на каком лайоуте она будет показываться
+
+        popupMenu.setOnMenuItemClickListener { //Слушатель нажиманий на итемы
+            when(it.itemId)
+            {
+                R.id.menu_post_item_delete -> viewModel.removeById(post.id) //Удаление
+                R.id.menu_post_item_edit ->{
+                    with(bindingAddEditBinding){
+                        setContentView(root)
+                        textViewContent.setText( post.content)
+                        textAuthor.setText( post.author)
+                        textData.text = post.data
+                        imageButtonCancel.setOnClickListener {
+                            setContentView(binding.root)
+                        }
+                        imageButtonSavePost.setOnClickListener {
+                            viewModel.changeById(post.id,textAuthor.text.toString(),textViewContent.text.toString())
+                            setContentView(binding.root)
+                        }
+                    }
+                }
+            }
+            true //Просто хз, ноу комент
+
+        }
+
+        popupMenu.show() // Показываю менюшку
+
     }
 }
 
