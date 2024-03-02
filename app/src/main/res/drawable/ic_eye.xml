@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <path
+        android:fillColor="#616c7f"
+        android:pathData="M29.5,34h-2a3,3,0,0,0-6,0h-2a5,5,0,0,1,10,0Z" />
+    <path
+        android:fillColor="#4c5665"
+        android:pathData="M2,34a1,1,0,0,0,1-1V11A3.85,3.85,0,0,1,7,7c3.955,0,4,3.837,4,4v2a1,1,0,0,0,2,0V11A5.785,5.785,0,0,0,7,5a5.785,5.785,0,0,0-6,6V33A1,1,0,0,0,2,34Z" />
+    <path
+        android:fillColor="#616c7f"
+        android:pathData="M2,32H5a0,0,0,0,1,0,0v4a0,0,0,0,1,0,0H2a2,2,0,0,1-2-2v0a2,2,0,0,1,2-2Z" />
+    <path
+        android:fillColor="#4c5665"
+        android:pathData="M46,34a1,1,0,0,1-1-1V11a3.85,3.85,0,0,0-4-4c-3.955,0-4,3.837-4,4v2a1,1,0,0,1-2,0V11a5.785,5.785,0,0,1,6-6,5.785,5.785,0,0,1,6,6V33A1,1,0,0,1,46,34Z" />
+    <path
+        android:fillColor="#616c7f"
+        android:pathData="M 13 25 C 17.9705627485 25 22 29.0294372515 22 34 C 22 38.9705627485 17.9705627485 43 13 43 C 8.02943725152 43 4 38.9705627485 4 34 C 4 29.0294372515 8.02943725152 25 13 25 Z" />
+    <path
+        android:fillColor="#97f8f5"
+        android:pathData="M 13 27 C 16.8659932488 27 20 30.1340067512 20 34 C 20 37.8659932488 16.8659932488 41 13 41 C 9.13400675118 41 6 37.8659932488 6 34 C 6 30.1340067512 9.13400675118 27 13 27 Z" />
+    <path
+        android:fillColor="#616c7f"
+        android:pathData="M45,32h3a0,0,0,0,1,0,0v4a0,0,0,0,1,0,0H45a2,2,0,0,1-2-2v0A2,2,0,0,1,45,32Z" />
+    <path
+        android:fillColor="#616c7f"
+        android:pathData="M 36 25 C 40.9705627485 25 45 29.0294372515 45 34 C 45 38.9705627485 40.9705627485 43 36 43 C 31.0294372515 43 27 38.9705627485 27 34 C 27 29.0294372515 31.0294372515 25 36 25 Z" />
+    <path
+        android:fillColor="#97f8f5"
+        android:pathData="M 36 27 C 39.8659932488 27 43 30.1340067512 43 34 C 43 37.8659932488 39.8659932488 41 36 41 C 32.1340067512 41 29 37.8659932488 29 34 C 29 30.1340067512 32.1340067512 27 36 27 Z" />
+</vector>
