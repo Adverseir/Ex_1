@@ -1,7 +1,12 @@
 package com.example.kostin_up
 
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kostin_up.databinding.ActivityMain2Binding
 import com.example.kostin_up.databinding.CardPostBinding
 
 interface Listener{
@@ -39,6 +44,8 @@ class PostViewHolder (
         }
     }
 }
+
+
 fun toStringNumb(count: Int): String {
     return when (count) {
         in 0..<1_000 -> count.toString()

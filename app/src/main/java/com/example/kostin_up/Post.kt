@@ -8,6 +8,7 @@ data class Post(
     var amountLike: Int = 0,
     var amountShare: Int = 0,
     var amountView:Int = 0,
-    val isLiked: Boolean = false
+    val isLiked: Boolean = false,
+    val link:String,
 
 )

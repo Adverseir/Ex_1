@@ -1,8 +1,10 @@
 package com.example.kostin_up
 
+import android.content.Intent
 import android.nfc.NfcAdapter.OnTagRemovedListener
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -27,5 +29,7 @@ class PostsAdapter(private val listener: Listener) : ListAdapter<Post, PostViewH
         override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
             return oldItem == newItem
         }
+
     }
+
 }

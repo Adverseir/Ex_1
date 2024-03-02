@@ -1,8 +1,13 @@
 package com.example.kostin_up
 
+import android.app.Activity
+import android.os.Bundle
+import android.os.PersistableBundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.kostin_up.databinding.ActivityMain2Binding
 import java.util.Calendar
 
 interface PostRepository {
@@ -25,6 +30,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
             amountShare = 0,
             isLiked = false,
             amountLike = 0,
+            link = "https://btpit36.ru/"
         ),
         Post(
             id = 2,
@@ -34,6 +40,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
             amountShare = 0,
             isLiked = false,
             amountLike = 0,
+            link = "https://vk.com/btpit_36professionalitet?ysclid=lt9wvmkyua350914586"
         ),
     )
 
@@ -77,6 +84,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
                 amountLike = 0,
                 amountShare = 0,
                 amountView = 0,
+                link = "https://btpit36.ru/"
+
             )
         )+posts
 
@@ -92,6 +101,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
         }
         return id
     }
+
 
 }
 
